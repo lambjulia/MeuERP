@@ -105,7 +105,7 @@ function submit() {
                 <div class="flex items-center justify-between mb-2">
                     <label class="text-sm font-medium text-gray-700">Itens <span class="text-red-500">*</span></label>
                     <button type="button" @click="addItem"
-                        class="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 font-medium">
+                        class="flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium">
                         <i class="pi pi-plus text-xs"></i> Adicionar Item
                     </button>
                 </div>
@@ -174,7 +174,7 @@ function submit() {
                     Cancelar
                 </button>
                 <button type="button" @click="submit" :disabled="form.processing"
-                    class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50">
+                    class="px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:brightness-90 disabled:opacity-50">
                     {{ sale ? 'Salvar' : 'Criar' }}
                 </button>
             </div>

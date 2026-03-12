@@ -5,3 +5,29 @@
 [x-cloak] {
     display: none;
 }
+
+:root {
+    --color-base: #1e222e;
+    --color-primary: #14B8A6;
+    --color-secondary: #6366F1;
+    --color-accent: #F97316;
+    --color-surface: #ffffff;
+    --color-muted: #6b7280;
+}
+
+/* Simple helper utilities for components that still use raw classes */
+.bg-primary { background-color: var(--color-primary); }
+.text-primary { color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.text-secondary { color: var(--color-secondary); }
+.bg-accent { background-color: var(--color-accent); }
+.text-accent { color: var(--color-accent); }
+.bg-base { background-color: var(--color-base); }
+.text-base { color: var(--color-base); }
+
+/* Additional helpers for forms and subtle text */
+.bg-surface { background-color: var(--color-surface); }
+.text-muted { color: var(--color-muted); }
+
+/* selection color fallback */
+::selection { background-color: var(--color-accent); color: white; }

@@ -23,8 +23,8 @@ defineProps({
                         <p class="text-sm text-gray-500">Produtos</p>
                         <p class="text-2xl font-bold text-gray-900 mt-1">{{ stats.total_products }}</p>
                     </div>
-                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <i class="pi pi-box text-blue-600"></i>
+                    <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <i class="pi pi-box text-primary"></i>
                     </div>
                 </div>
             </div>
@@ -96,10 +96,10 @@ defineProps({
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm text-gray-500">Vendas do Mês</p>
-                        <p class="text-xl font-bold text-blue-600 mt-1"><BaseMoney :value="stats.sales_month" /></p>
+                        <p class="text-xl font-bold text-primary mt-1"><BaseMoney :value="stats.sales_month" /></p>
                     </div>
-                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <i class="pi pi-dollar text-blue-600"></i>
+                    <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <i class="pi pi-dollar text-primary"></i>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@ defineProps({
                 <tbody>
                     <tr v-for="product in low_stock_products" :key="product.id" class="border-b last:border-0">
                         <td class="py-3">
-                            <Link :href="route('products.index')" class="text-blue-600 hover:text-blue-800">
+                            <Link :href="route('products.index')" class="text-primary hover:text-primary/80">
                                 {{ product.name }}
                             </Link>
                         </td>

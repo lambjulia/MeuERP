@@ -19,7 +19,7 @@ defineProps({
         <button
             type="submit"
             :disabled="loading"
-            class="px-4 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+            class="px-4 py-2.5 text-sm font-medium text-white bg-primary rounded-lg hover:brightness-90 disabled:opacity-50 transition-colors"
         >
             <i v-if="loading" class="pi pi-spinner pi-spin mr-1"></i>
             {{ submitLabel }}

@@ -89,7 +89,7 @@ function submit() {
                     Cancelar
                 </button>
                 <button type="button" @click="submit" :disabled="form.processing"
-                    class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50">
+                    class="px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:brightness-90 disabled:opacity-50">
                     {{ customer ? 'Salvar' : 'Criar' }}
                 </button>
             </div>

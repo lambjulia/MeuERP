@@ -82,7 +82,7 @@ function cancelSale(id) { router.post(route('sales.cancel', id)); }
             <div v-if="sales.links" class="p-4 border-t border-gray-100 flex justify-center gap-1">
                 <template v-for="link in sales.links" :key="link.label">
                     <a v-if="link.url" :href="link.url" v-html="link.label"
-                       class="px-3 py-1.5 text-sm rounded-lg" :class="link.active ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'" />
+                       class="px-3 py-1.5 text-sm rounded-lg" :class="link.active ? 'bg-primary text-white' : 'text-gray-600 hover:bg-gray-100'" />
                     <span v-else v-html="link.label" class="px-3 py-1.5 text-sm text-gray-400" />
                 </template>
             </div>

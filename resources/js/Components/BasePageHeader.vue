@@ -21,7 +21,7 @@ defineEmits(['new']);
                 v-if="showCreate"
                 type="button"
                 @click="$emit('new')"
-                class="inline-flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                class="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-sm font-medium rounded-lg hover:brightness-90 transition-colors"
             >
                 <i class="pi pi-plus text-sm"></i>
                 {{ createLabel }}

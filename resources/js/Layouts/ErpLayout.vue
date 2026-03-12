@@ -101,7 +101,7 @@ if (flash.value.error) {
             <!-- Sidebar -->
             <aside
                 :class="[
-                    'fixed inset-y-0 left-0 z-30 flex flex-col bg-gray-900 text-white transition-all duration-300',
+                    'fixed inset-y-0 left-0 z-30 flex flex-col bg-base text-white transition-all duration-300',
                     sidebarOpen ? 'w-64' : 'w-20',
                     'hidden lg:flex',
                 ]"
@@ -109,7 +109,7 @@ if (flash.value.error) {
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-16 px-4 border-b border-gray-800">
                     <Link :href="route('dashboard')" class="flex items-center gap-2">
-                        <span class="text-xl font-bold text-blue-400">
+                        <span class="text-xl font-bold text-primary">
                             <i class="pi pi-box"></i>
                         </span>
                         <span v-if="sidebarOpen" class="text-lg font-bold">MeuERP</span>
@@ -129,7 +129,7 @@ if (flash.value.error) {
                                 :class="[
                                     'flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-colors',
                                     isActive(item.route)
-                                        ? 'bg-blue-600 text-white'
+                                        ? 'bg-primary text-white'
                                         : 'text-gray-300 hover:bg-gray-800 hover:text-white',
                                 ]"
                             >
@@ -145,7 +145,7 @@ if (flash.value.error) {
                                 :class="[
                                     'flex items-center justify-between w-full px-3 py-2.5 rounded-lg mb-1 transition-colors',
                                     isGroupActive(item)
-                                        ? 'text-blue-400'
+                                        ? 'text-primary'
                                         : 'text-gray-400 hover:bg-gray-800 hover:text-white',
                                 ]"
                             >
@@ -169,8 +169,8 @@ if (flash.value.error) {
                                     :href="route(child.route)"
                                     :class="[
                                         'flex items-center gap-3 px-3 py-2 rounded-lg mb-0.5 transition-colors',
-                                        isActive(child.route)
-                                            ? 'bg-blue-600/20 text-blue-400'
+                                            isActive(child.route)
+                                            ? 'bg-primary/20 text-primary'
                                             : 'text-gray-400 hover:bg-gray-800 hover:text-white',
                                     ]"
                                 >
@@ -184,8 +184,8 @@ if (flash.value.error) {
 
                 <!-- User -->
                 <div class="border-t border-gray-800 p-4">
-                    <div v-if="sidebarOpen" class="flex items-center gap-3">
-                        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-sm font-bold">
+                        <div v-if="sidebarOpen" class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-sm font-bold">
                             {{ user?.name?.charAt(0)?.toUpperCase() }}
                         </div>
                         <div class="flex-1 min-w-0">
@@ -198,7 +198,7 @@ if (flash.value.error) {
                             <i class="pi pi-user"></i>
                             <span v-if="sidebarOpen" class="ml-1">Perfil</span>
                         </Link>
-                        <button @click="logout" class="flex-1 text-center text-xs text-gray-400 hover:text-red-400 py-1 rounded hover:bg-gray-800">
+                        <button @click="logout" class="flex-1 text-center text-xs text-gray-400 hover:text-accent py-1 rounded hover:bg-gray-800">
                             <i class="pi pi-sign-out"></i>
                             <span v-if="sidebarOpen" class="ml-1">Sair</span>
                         </button>
@@ -221,7 +221,7 @@ if (flash.value.error) {
                 ]"
             >
                 <div class="flex items-center justify-between h-16 px-4 border-b border-gray-800">
-                    <span class="text-lg font-bold text-blue-400">MeuERP</span>
+                    <span class="text-lg font-bold text-primary">MeuERP</span>
                     <button @click="mobileSidebarOpen = false" class="text-gray-400 hover:text-white">
                         <i class="pi pi-times"></i>
                     </button>
@@ -235,8 +235,8 @@ if (flash.value.error) {
                                 :class="[
                                     'flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-colors',
                                     isActive(item.route)
-                                        ? 'bg-blue-600 text-white'
-                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white',
+                                                        ? 'bg-primary text-white'
+                                                        : 'text-gray-300 hover:bg-gray-800 hover:text-white',
                                 ]"
                             >
                                 <i :class="item.icon" class="text-base w-5 text-center"></i>
@@ -263,7 +263,7 @@ if (flash.value.error) {
                                     :class="[
                                         'flex items-center gap-3 px-3 py-2 rounded-lg mb-0.5 transition-colors',
                                         isActive(child.route)
-                                            ? 'bg-blue-600/20 text-blue-400'
+                                            ? 'bg-primary/20 text-primary'
                                             : 'text-gray-400 hover:bg-gray-800 hover:text-white',
                                     ]"
                                 >
