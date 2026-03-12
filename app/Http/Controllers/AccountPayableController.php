@@ -30,14 +30,6 @@ class AccountPayableController extends Controller
                 'value' => $s->value,
                 'label' => $s->label(),
             ]),
-        ]);
-    }
-
-    public function create(Request $request)
-    {
-        $companyId = $request->user()->company_id;
-
-        return Inertia::render('AccountsPayable/Create', [
             'suppliers' => Supplier::where('company_id', $companyId)->where('active', true)->select('id', 'name')->orderBy('name')->get(),
         ]);
     }
@@ -52,16 +44,6 @@ class AccountPayableController extends Controller
 
         return redirect()->route('accounts-payable.index')
             ->with('success', 'Conta a pagar criada com sucesso.');
-    }
-
-    public function edit(Request $request, AccountPayable $accounts_payable)
-    {
-        $companyId = $request->user()->company_id;
-
-        return Inertia::render('AccountsPayable/Edit', [
-            'account' => $accounts_payable,
-            'suppliers' => Supplier::where('company_id', $companyId)->where('active', true)->select('id', 'name')->orderBy('name')->get(),
-        ]);
     }
 
     public function update(AccountPayableRequest $request, AccountPayable $accounts_payable)

@@ -26,11 +26,6 @@ class SupplierController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return Inertia::render('Suppliers/Create');
-    }
-
     public function store(SupplierRequest $request)
     {
         Supplier::create([
@@ -40,13 +35,6 @@ class SupplierController extends Controller
 
         return redirect()->route('suppliers.index')
             ->with('success', 'Fornecedor criado com sucesso.');
-    }
-
-    public function edit(Supplier $supplier)
-    {
-        return Inertia::render('Suppliers/Edit', [
-            'supplier' => $supplier,
-        ]);
     }
 
     public function update(SupplierRequest $request, Supplier $supplier)

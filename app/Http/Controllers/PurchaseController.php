@@ -35,14 +35,6 @@ class PurchaseController extends Controller
                 'value' => $s->value,
                 'label' => $s->label(),
             ]),
-        ]);
-    }
-
-    public function create(Request $request)
-    {
-        $companyId = $request->user()->company_id;
-
-        return Inertia::render('Purchases/Create', [
             'suppliers' => Supplier::where('company_id', $companyId)->where('active', true)->select('id', 'name')->orderBy('name')->get(),
             'products' => Product::where('company_id', $companyId)->where('active', true)->select('id', 'name', 'cost_price')->orderBy('name')->get(),
         ]);
@@ -78,36 +70,10 @@ class PurchaseController extends Controller
             ->with('success', 'Compra criada com sucesso.');
     }
 
-    public function show(Purchase $purchase)
-    {
-        $purchase->load('supplier:id,name', 'items.product:id,name');
-
-        return Inertia::render('Purchases/Show', [
-            'purchase' => $purchase,
-        ]);
-    }
-
-    public function edit(Request $request, Purchase $purchase)
-    {
-        if ($purchase->status !== PurchaseStatus::Draft) {
-            return redirect()->route('purchases.show', $purchase)
-                ->with('error', 'Apenas compras em rascunho podem ser editadas.');
-        }
-
-        $companyId = $request->user()->company_id;
-        $purchase->load('items');
-
-        return Inertia::render('Purchases/Edit', [
-            'purchase' => $purchase,
-            'suppliers' => Supplier::where('company_id', $companyId)->where('active', true)->select('id', 'name')->orderBy('name')->get(),
-            'products' => Product::where('company_id', $companyId)->where('active', true)->select('id', 'name', 'cost_price')->orderBy('name')->get(),
-        ]);
-    }
-
     public function update(PurchaseRequest $request, Purchase $purchase)
     {
         if ($purchase->status !== PurchaseStatus::Draft) {
-            return redirect()->route('purchases.show', $purchase)
+            return redirect()->route('purchases.index')
                 ->with('error', 'Apenas compras em rascunho podem ser editadas.');
         }
 
@@ -142,7 +108,7 @@ class PurchaseController extends Controller
     {
         try {
             $action->execute($purchase);
-            return redirect()->route('purchases.show', $purchase)
+            return redirect()->route('purchases.index')
                 ->with('success', 'Compra confirmada com sucesso.');
         } catch (\DomainException $e) {
             return redirect()->back()->with('error', $e->getMessage());
@@ -153,7 +119,7 @@ class PurchaseController extends Controller
     {
         try {
             $action->execute($purchase);
-            return redirect()->route('purchases.show', $purchase)
+            return redirect()->route('purchases.index')
                 ->with('success', 'Compra cancelada com sucesso.');
         } catch (\DomainException $e) {
             return redirect()->back()->with('error', $e->getMessage());

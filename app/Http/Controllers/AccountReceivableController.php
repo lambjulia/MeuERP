@@ -30,14 +30,6 @@ class AccountReceivableController extends Controller
                 'value' => $s->value,
                 'label' => $s->label(),
             ]),
-        ]);
-    }
-
-    public function create(Request $request)
-    {
-        $companyId = $request->user()->company_id;
-
-        return Inertia::render('AccountsReceivable/Create', [
             'customers' => Customer::where('company_id', $companyId)->where('active', true)->select('id', 'name')->orderBy('name')->get(),
         ]);
     }
@@ -52,16 +44,6 @@ class AccountReceivableController extends Controller
 
         return redirect()->route('accounts-receivable.index')
             ->with('success', 'Conta a receber criada com sucesso.');
-    }
-
-    public function edit(Request $request, AccountReceivable $accounts_receivable)
-    {
-        $companyId = $request->user()->company_id;
-
-        return Inertia::render('AccountsReceivable/Edit', [
-            'account' => $accounts_receivable,
-            'customers' => Customer::where('company_id', $companyId)->where('active', true)->select('id', 'name')->orderBy('name')->get(),
-        ]);
     }
 
     public function update(AccountReceivableRequest $request, AccountReceivable $accounts_receivable)

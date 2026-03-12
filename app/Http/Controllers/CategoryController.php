@@ -25,11 +25,6 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return Inertia::render('Categories/Create');
-    }
-
     public function store(CategoryRequest $request)
     {
         Category::create([
@@ -39,13 +34,6 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.index')
             ->with('success', 'Categoria criada com sucesso.');
-    }
-
-    public function edit(Category $category)
-    {
-        return Inertia::render('Categories/Edit', [
-            'category' => $category,
-        ]);
     }
 
     public function update(CategoryRequest $request, Category $category)

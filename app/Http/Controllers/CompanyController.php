@@ -23,24 +23,12 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return Inertia::render('Companies/Create');
-    }
-
     public function store(CompanyRequest $request)
     {
         Company::create($request->validated());
 
         return redirect()->route('companies.index')
             ->with('success', 'Empresa criada com sucesso.');
-    }
-
-    public function edit(Company $company)
-    {
-        return Inertia::render('Companies/Edit', [
-            'company' => $company,
-        ]);
     }
 
     public function update(CompanyRequest $request, Company $company)

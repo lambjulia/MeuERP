@@ -35,19 +35,6 @@ class ProductController extends Controller
         ]);
     }
 
-    public function create(Request $request)
-    {
-        $companyId = $request->user()->company_id;
-
-        return Inertia::render('Products/Create', [
-            'categories' => Category::where('company_id', $companyId)
-                ->where('active', true)
-                ->select('id', 'name')
-                ->orderBy('name')
-                ->get(),
-        ]);
-    }
-
     public function store(ProductRequest $request)
     {
         Product::create([
@@ -57,29 +44,6 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')
             ->with('success', 'Produto criado com sucesso.');
-    }
-
-    public function show(Product $product)
-    {
-        $product->load('category:id,name', 'stockMovements');
-
-        return Inertia::render('Products/Show', [
-            'product' => $product,
-        ]);
-    }
-
-    public function edit(Request $request, Product $product)
-    {
-        $companyId = $request->user()->company_id;
-
-        return Inertia::render('Products/Edit', [
-            'product' => $product,
-            'categories' => Category::where('company_id', $companyId)
-                ->where('active', true)
-                ->select('id', 'name')
-                ->orderBy('name')
-                ->get(),
-        ]);
     }
 
     public function update(ProductRequest $request, Product $product)

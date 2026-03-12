@@ -35,14 +35,6 @@ class SaleController extends Controller
                 'value' => $s->value,
                 'label' => $s->label(),
             ]),
-        ]);
-    }
-
-    public function create(Request $request)
-    {
-        $companyId = $request->user()->company_id;
-
-        return Inertia::render('Sales/Create', [
             'customers' => Customer::where('company_id', $companyId)->where('active', true)->select('id', 'name')->orderBy('name')->get(),
             'products' => Product::where('company_id', $companyId)->where('active', true)->select('id', 'name', 'sale_price', 'stock_quantity')->orderBy('name')->get(),
         ]);
@@ -78,36 +70,10 @@ class SaleController extends Controller
             ->with('success', 'Venda criada com sucesso.');
     }
 
-    public function show(Sale $sale)
-    {
-        $sale->load('customer:id,name', 'items.product:id,name');
-
-        return Inertia::render('Sales/Show', [
-            'sale' => $sale,
-        ]);
-    }
-
-    public function edit(Request $request, Sale $sale)
-    {
-        if ($sale->status !== SaleStatus::Draft) {
-            return redirect()->route('sales.show', $sale)
-                ->with('error', 'Apenas vendas em rascunho podem ser editadas.');
-        }
-
-        $companyId = $request->user()->company_id;
-        $sale->load('items');
-
-        return Inertia::render('Sales/Edit', [
-            'sale' => $sale,
-            'customers' => Customer::where('company_id', $companyId)->where('active', true)->select('id', 'name')->orderBy('name')->get(),
-            'products' => Product::where('company_id', $companyId)->where('active', true)->select('id', 'name', 'sale_price', 'stock_quantity')->orderBy('name')->get(),
-        ]);
-    }
-
     public function update(SaleRequest $request, Sale $sale)
     {
         if ($sale->status !== SaleStatus::Draft) {
-            return redirect()->route('sales.show', $sale)
+            return redirect()->route('sales.index')
                 ->with('error', 'Apenas vendas em rascunho podem ser editadas.');
         }
 
@@ -142,7 +108,7 @@ class SaleController extends Controller
     {
         try {
             $action->execute($sale);
-            return redirect()->route('sales.show', $sale)
+            return redirect()->route('sales.index')
                 ->with('success', 'Venda confirmada com sucesso.');
         } catch (\DomainException $e) {
             return redirect()->back()->with('error', $e->getMessage());
@@ -153,7 +119,7 @@ class SaleController extends Controller
     {
         try {
             $action->execute($sale);
-            return redirect()->route('sales.show', $sale)
+            return redirect()->route('sales.index')
                 ->with('success', 'Venda cancelada com sucesso.');
         } catch (\DomainException $e) {
             return redirect()->back()->with('error', $e->getMessage());

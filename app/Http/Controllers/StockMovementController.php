@@ -39,23 +39,6 @@ class StockMovementController extends Controller
         ]);
     }
 
-    public function create(Request $request)
-    {
-        $companyId = $request->user()->company_id;
-
-        return Inertia::render('Stock/Create', [
-            'products' => Product::where('company_id', $companyId)
-                ->where('active', true)
-                ->select('id', 'name', 'stock_quantity')
-                ->orderBy('name')
-                ->get(),
-            'types' => collect(StockMovementType::cases())->map(fn ($t) => [
-                'value' => $t->value,
-                'label' => $t->label(),
-            ]),
-        ]);
-    }
-
     public function store(StockAdjustmentRequest $request, CreateStockAdjustmentAction $action)
     {
         $action->execute(

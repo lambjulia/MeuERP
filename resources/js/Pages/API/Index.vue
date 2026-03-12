@@ -1,6 +1,6 @@
 <script setup>
 import ApiTokenManager from '@/Pages/API/Partials/ApiTokenManager.vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
+import ErpLayout from '@/Layouts/ErpLayout.vue';
 
 defineProps({
     tokens: Array,
@@ -10,21 +10,19 @@ defineProps({
 </script>
 
 <template>
-    <AppLayout title="API Tokens">
+    <ErpLayout title="Tokens de API">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                API Tokens
+                Tokens de API
             </h2>
         </template>
 
-        <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <ApiTokenManager
-                    :tokens="tokens"
-                    :available-permissions="availablePermissions"
-                    :default-permissions="defaultPermissions"
-                />
-            </div>
+        <div class="max-w-7xl mx-auto py-6">
+            <ApiTokenManager
+                :tokens="tokens"
+                :available-permissions="availablePermissions"
+                :default-permissions="defaultPermissions"
+            />
         </div>
-    </AppLayout>
+    </ErpLayout>
 </template>
